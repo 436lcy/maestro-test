@@ -1,0 +1,4 @@
+appId: com.lcy.MyApp
+---
+- launchApp
+- tapOn: 'Hello, world!'

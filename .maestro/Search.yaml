@@ -1,0 +1,10 @@
+appId: com.lcy.MyApp
+
+---
+- launchApp
+- tapOn: "Login"
+- inputText: "user@example.com"
+- tapOn: "Next"
+- inputText: "password123"
+- tapOn: "Submit"
+- assertVisible: "Welcome"

@@ -1,0 +1,5 @@
+- tapOn: "Login"
+- inputText: "test@demo.com"
+- tapOn: "Next"
+- inputText: "123456"
+- tapOn: "Submit"
