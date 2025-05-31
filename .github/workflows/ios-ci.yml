@@ -1,0 +1,51 @@
+name: iOS CI
+
+on:
+  push:
+    branches:
+      - master  # 当代码推送到 master 分支时触发
+
+jobs:
+  build:
+    name: Build and Test iOS Application
+    runs-on: macos-latest  # 使用最新的 macOS 运行环境
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # 获取代码
+
+      - name: Set up Xcode
+        uses: macos-latest-setup@v1  # 配置 Xcode
+
+      - name: Cache CocoaPods dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cocoapods
+          key: ${{ runner.os }}-cocoapods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cocoapods-
+
+      - name: Install dependencies
+        run: |
+          gem install cocoapods  # 安装 CocoaPods
+          pod install  # 安装依赖
+
+      - name: Build the app
+        run: |
+          xcodebuild clean build -workspace YourApp.xcworkspace -scheme YourApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' 
+
+      - name: Run tests
+        run: |
+          xcodebuild test -workspace YourApp.xcworkspace -scheme YourApp -destination 'platform=iOS Simulator,name=iPhone 14'  # 运行测试
+
+      - name: Archive the app
+        run: |
+          xcodebuild archive -workspace YourApp.xcworkspace -scheme YourApp -sdk iphoneos -archivePath $PWD/build/YourApp.xcarchive
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive -archivePath $PWD/build/YourApp.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath $PWD/build
+
+      - name: Upload IPA to GitHub Releases (optional)
+        uses: softprops/action-gh-release@v1
+        with:
+          files: $PWD/build/YourApp.ipa
