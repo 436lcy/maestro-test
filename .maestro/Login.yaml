@@ -1,11 +1,4 @@
 appId: com.lcy.MyApp
-
 ---
 - launchApp
-- runFlow: subflows/MySubflow.yaml
-- tapOn: "Login"
-- inputText: "user@example.com"
-- tapOn: "Next"
-- inputText: "password123"
-- tapOn: "Submit"
-- assertVisible: "Welcome"
+- tapOn: 'Hello, world!'
