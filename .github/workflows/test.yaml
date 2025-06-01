@@ -1,46 +1,50 @@
-name: Build and run Maestro tests (Native iOS)
+name: iOS CI with Xcode 16.2 and Maestro
 
 on:
   push:
     branches:
-      - main
+      - main # 你可以根据需要调整触发的分支
   pull_request:
     branches:
-      - main
+      - main # 你可以根据需要调整触发的分支
 
 jobs:
   build:
     runs-on: macOS-latest
-
     steps:
-      # 1. Checkout the repository
+      # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 2. Set up the correct version of Xcode (15.4)
-      - name: Set up Xcode 15.4
+      # 设置 Xcode 16.2 作为默认 Xcode 版本
+      - name: Set Xcode 16.2
         run: |
-          sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
-          xcode-select -p  # Verify selected Xcode version
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+          xcodebuild -version # 确认 Xcode 版本
 
-      # 3. Install dependencies
-      - name: Install dependencies (CocoaPods)
+      # 安装依赖项
+      - name: Install dependencies
         run: |
           brew install cocoapods
           pod install
 
-      # 4. Build the app
-      - name: Build the app (Debug configuration)
+      # 构建项目
+      - name: Build the app
         run: |
           xcodebuild build -scheme 'MyApp' -configuration Debug -project 'MyApp.xcodeproj' -destination 'generic/platform=iOS Simulator' CONFIGURATION_BUILD_DIR=$PWD/build
 
-      # 5. Upload app to Maestro Cloud for testing
-      - name: Upload app to Maestro Cloud
-        uses: mobile-dev-inc/action-maestro-cloud@v1
-        with:
-          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}  # Use your Maestro Cloud API key
-          project-id: ${{ secrets.MAESTRO_PROJECT_ID }}  # Use your Maestro project ID
-          app-file: build/MyApp.app  # Path to the built app file
-          pullRequestId: ${{ github.event.pull_request.number }}  # Pull request ID
-          commitSha: ${{ github.sha }}  # Commit hash
-          branch: ${{ github.head_ref }}  # Pull request source branch
+      # Maestro身份认证步骤
+      - name: Maestro authentication
+        run: |
+          echo ${{ secrets.MAESTRO_API_KEY }} > maestro_api_key.txt
+          maestro-cli auth --api-key $(cat maestro_api_key.txt)
+
+      # 上传到 Maestro 控制台
+      - name: Upload to Maestro Cloud
+        run: |
+          maestro-cli upload --app-name "MyApp" --device "iPhone 16" --build-directory $PWD/build
+
+      # 触发 Maestro 测试
+      - name: Trigger Maestro Test
+        run: |
+          maestro-cli test --app-name "MyApp" --device "iPhone 16" --build-directory $PWD/build
