@@ -15,16 +15,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 2. Set up dependencies and build the app (iOS)
-      - name: Install dependencies
+      # 2. Install cocoapods and dependencies
+      - name: Install cocoapods
         run: |
-          brew install cocoapods
-          pod install
+          brew install cocoapods  # Ensure cocoapods is installed
+          pod install             # Install dependencies from the Podfile
+
+      # 3. Build the app
       - name: Build the app
         run: |
           xcodebuild build -scheme 'MyApp' -configuration Debug -project 'MyApp.xcodeproj' -destination 'generic/platform=iOS Simulator' CONFIGURATION_BUILD_DIR=$PWD/build
 
-      # 3. Upload app file to Maestro Cloud for testing
+      # 4. Upload app file to Maestro Cloud for testing
       - name: Upload app to Maestro Cloud
         uses: mobile-dev-inc/action-maestro-cloud@v1
         with:
