@@ -1,39 +1,46 @@
-name: Build and Run Maestro Tests (Native iOS)
+name: Build and run Maestro tests (Native iOS)
 
 on:
   push:
     branches:
-      - main  # 监听主分支的 push 事件
+      - main
   pull_request:
     branches:
-      - main  # 监听拉取请求的事件
+      - main
 
 jobs:
   build:
     runs-on: macOS-latest
 
     steps:
-      - name: Checkout code
+      # 1. Checkout the repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 安装依赖
-      - name: Install dependencies
+      # 2. Set up the correct version of Xcode (15.4)
+      - name: Set up Xcode 15.4
+        run: |
+          sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+          xcode-select -p  # Verify selected Xcode version
+
+      # 3. Install dependencies
+      - name: Install dependencies (CocoaPods)
         run: |
           brew install cocoapods
           pod install
 
-      # 构建项目
-      - name: Build the app
+      # 4. Build the app
+      - name: Build the app (Debug configuration)
         run: |
           xcodebuild build -scheme 'MyApp' -configuration Debug -project 'MyApp.xcodeproj' -destination 'generic/platform=iOS Simulator' CONFIGURATION_BUILD_DIR=$PWD/build
 
-      # 上传到 Maestro Cloud
+      # 5. Upload app to Maestro Cloud for testing
       - name: Upload app to Maestro Cloud
         uses: mobile-dev-inc/action-maestro-cloud@v1
         with:
-          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}  # 你的 Maestro API 密钥
-          project-id: ${{ secrets.MAESTRO_PROJECT_ID }}  # 你的 Maestro 项目 ID
-          app-file: build/MyApp.app  # 你构建的应用文件路径
-          pullRequestId: ${{ github.event.pull_request.number }}  # 如果是 PR 触发，使用 PR ID
-          commitSha: ${{ github.sha }}  # 提交的哈希值
-          branch: ${{ github.head_ref }}  # 触发 PR 时的源分支
+          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}  # Use your Maestro Cloud API key
+          project-id: ${{ secrets.MAESTRO_PROJECT_ID }}  # Use your Maestro project ID
+          app-file: build/MyApp.app  # Path to the built app file
+          pullRequestId: ${{ github.event.pull_request.number }}  # Pull request ID
+          commitSha: ${{ github.sha }}  # Commit hash
+          branch: ${{ github.head_ref }}  # Pull request source branch
