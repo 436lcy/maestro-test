@@ -1,0 +1,38 @@
+{
+  "" : {
+    "diagnostics" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyApp-master.dia",
+    "emit-module-dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyApp-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyApp-master-emit-module.dia",
+    "swift-dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyApp-master.swiftdeps"
+  },
+  "/Users/lichenyang/Desktop/MyApp/MyApp/ContentView.swift" : {
+    "const-values" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/lichenyang/Desktop/MyApp/MyApp/MyAppApp.swift" : {
+    "const-values" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp.swiftconstvalues",
+    "dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp.d",
+    "diagnostics" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp.dia",
+    "index-unit-output-path" : "/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp.o",
+    "llvm-bc" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp.bc",
+    "object" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp.o",
+    "swift-dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp.swiftdeps",
+    "swiftmodule" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/MyAppApp~partial.swiftmodule"
+  },
+  "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/lichenyang/Desktop/MyApp/build/Build/Intermediates.noindex/MyApp.build/Debug-iphonesimulator/MyApp.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}
