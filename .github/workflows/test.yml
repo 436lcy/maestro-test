@@ -1,9 +1,9 @@
 name: Build and Test with Maestro
 
 on:
-  pull_request:
+  push:
     branches:
-      - main  # 可以根据你的实际需求修改为对应的分支
+      - main
 
 jobs:
   build:
@@ -14,17 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 安装 CocoaPods 依赖
-      - name: Install dependencies with CocoaPods
-        run: |
-          gem install cocoapods
-          pod install
-
       # 设置 Xcode 16.2 作为默认 Xcode 版本
       - name: Set Xcode 16.2
         run: |
           sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
           xcodebuild -version
+
+      # 安装 CocoaPods 依赖
+      - name: Install dependencies with CocoaPods
+        run: |
+          gem install cocoapods
+          pod install
 
       # 构建项目
       - name: Build the app
