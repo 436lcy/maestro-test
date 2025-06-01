@@ -1,45 +1,43 @@
-name: iOS CI with Xcode 16.2 and Maestro
+name: Build and Test with Maestro
 
 on:
   push:
     branches:
-      - main # 你可以根据需要调整触发的分支
-  pull_request:
-    branches:
-      - main # 你可以根据需要调整触发的分支
+      - main
 
 jobs:
   build:
     runs-on: macOS-latest
+
     steps:
       # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # 安装 CocoaPods 依赖
+      - name: Install dependencies with CocoaPods
+        run: |
+          gem install cocoapods
+          pod install
+
       # 设置 Xcode 16.2 作为默认 Xcode 版本
       - name: Set Xcode 16.2
         run: |
           sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
-          xcodebuild -version # 确认 Xcode 版本
-
-      # 安装依赖项
-      - name: Install dependencies
-        run: |
-          brew install cocoapods
-          pod install
+          xcodebuild -version
 
       # 构建项目
       - name: Build the app
         run: |
           xcodebuild build -scheme 'MyApp' -configuration Debug -project 'MyApp.xcodeproj' -destination 'generic/platform=iOS Simulator' CONFIGURATION_BUILD_DIR=$PWD/build
 
-      # Maestro身份认证步骤
+      # Maestro身份认证
       - name: Maestro authentication
         run: |
           echo ${{ secrets.MAESTRO_API_KEY }} > maestro_api_key.txt
           maestro-cli auth --api-key $(cat maestro_api_key.txt)
 
-      # 上传到 Maestro 控制台
+      # 上传到 Maestro Cloud
       - name: Upload to Maestro Cloud
         run: |
           maestro-cli upload --app-name "MyApp" --device "iPhone 16" --build-directory $PWD/build
